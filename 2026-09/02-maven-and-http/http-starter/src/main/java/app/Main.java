@@ -1,24 +1,35 @@
 package app;
 
 import com.sun.net.httpserver.HttpServer;
-
-import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.util.concurrent.Executors;
+
+import app.controller.ShopController;
+import app.service.ShopService;
 
 public class Main {
 
     private static final int PORT = 8080;
 
-    public static void main(String[] args) throws IOException {
-        HttpServer server = HttpServer.create(new InetSocketAddress(PORT), 0);
+    public static void main(String[] args) throws Exception {
 
-        // Каждый контекст — это префикс пути и обработчик для него.
-        // Внимание: контекст "/ping" получит и запросы на "/ping/что-угодно".
+        System.setProperty("sun.net.httpserver.maxReqTime", "10");
+        System.setProperty("sun.net.httpserver.maxRspTime", "10");
+
+        HttpServer server = HttpServer.create(
+                new InetSocketAddress(PORT), 0);
+
+        ShopService shopService = new ShopService();
+
         server.createContext("/ping", new PingHandler());
+        server.createContext("/", new ShopController(shopService));
 
-        // TODO: зарегистрируйте здесь обработчики своих ресурсов
+        server.setExecutor(
+                Executors.newVirtualThreadPerTaskExecutor());
 
         server.start();
-        System.out.println("Сервер запущен: http://localhost:" + PORT + "/ping");
+
+        System.out.println(
+                "Сервер запущен: http://localhost:" + PORT);
     }
 }
