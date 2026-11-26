@@ -20,7 +20,6 @@ public class ShopService {
     private int nextOrder = 1;
 
 
-    // Получение товара по ID
     public Product product(int id) {
 
         Product product = products.get(id);
@@ -36,7 +35,6 @@ public class ShopService {
     }
 
 
-    // Получение заказа по ID
     public Order order(int id) {
 
         Order order = orders.get(id);
@@ -52,7 +50,6 @@ public class ShopService {
     }
 
 
-    // Получение списка товаров с фильтрацией
     public List<Product> products(
             String name,
             Boolean inStock
@@ -69,7 +66,6 @@ public class ShopService {
     }
 
 
-    // Получение списка заказов с фильтрацией
     public List<Order> orders(
             OrderType type,
             OrderStatus status,
@@ -88,7 +84,6 @@ public class ShopService {
     }
 
 
-    // Сохранение товара
     private Product saveProduct(
             int id,
             String name,
@@ -126,7 +121,6 @@ public class ShopService {
     }
 
 
-    // Создание товара
     public Product createProduct(
             String name,
             BigDecimal price,
@@ -142,7 +136,6 @@ public class ShopService {
     }
 
 
-    // Изменение товара
     public Product updateProduct(
             int id,
             String name,
@@ -156,7 +149,6 @@ public class ShopService {
     }
 
 
-    // Удаление товара
     public void deleteProduct(int id) {
 
         product(id);
@@ -175,7 +167,6 @@ public class ShopService {
     }
 
 
-    // Сохранение заказа
     private Order saveOrder(
             int id,
             int productId,
@@ -217,7 +208,6 @@ public class ShopService {
     }
 
 
-    // Создание заказа
     public Order createOrder(
             int productId,
             int quantity,
@@ -233,7 +223,6 @@ public class ShopService {
     }
 
 
-    // Проверка статуса заказа
     private void requireNew(Order order) {
 
         if (order.getStatus() != OrderStatus.NEW) {
@@ -245,7 +234,6 @@ public class ShopService {
     }
 
 
-    // Изменение заказа
     public Order updateOrder(
             int id,
             int productId,
@@ -264,7 +252,6 @@ public class ShopService {
     }
 
 
-    // Удаление заказа
     public void deleteOrder(int id) {
 
         requireNew(order(id));
@@ -273,7 +260,6 @@ public class ShopService {
     }
 
 
-    // Оформление заказа
     public Order checkout(int id) {
 
         Order order = order(id);
