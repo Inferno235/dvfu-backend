@@ -1,4 +1,4 @@
-package shop.model;
+package app.model;
 
 import java.math.BigDecimal;
 

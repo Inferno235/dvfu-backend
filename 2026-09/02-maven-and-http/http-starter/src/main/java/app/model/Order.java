@@ -1,10 +1,10 @@
-package shop.model;
+package app.model;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import shop.exception.ShopException;
+import app.exception.ShopException;
 
-import static shop.exception.ShopException.Kind.*;
+import static app.exception.ShopException.Kind.*;
 
 public abstract class Order {
 

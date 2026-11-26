@@ -1,9 +1,9 @@
-package shop.model;
+package app.model;
 
 import java.math.BigDecimal;
-import shop.exception.ShopException;
+import app.exception.ShopException;
 
-import static shop.exception.ShopException.Kind.INVALID;
+import static app.exception.ShopException.Kind.INVALID;
 
 public class RetailOrder extends Order {
 
